@@ -1,12 +1,12 @@
 // create table view data object
 var data = [
-	{title:'タトバ！', hasChild:true, combo:'tatoba'},
-	{title:'ガタキリバ！', hasChild:true, combo:'gatakiriba'},
-	{title:'ラトラーター！', hasChild:true, combo:'latorartar'},
-	{title:'サゴーゾ！', hasChild:true, combo:'sagohzo'},
-	{title:'シャウタ！', hasChild:true, combo:'shauta'},
-	{title:'タジャドル！', hasChild:true, combo:'tajadol'},
-	{title:'プトティラ！', hasChild:true, combo:'putotyra'},
+	{title:'Tatoba', hasChild:true, combo:'tatoba'},
+	{title:'Gatakiriba', hasChild:true, combo:'gatakiriba'},
+	{title:'Latorartar', hasChild:true, combo:'latorartar'},
+	{title:'Sagohzo', hasChild:true, combo:'sagohzo'},
+	{title:'Shauta', hasChild:true, combo:'shauta'},
+	{title:'Tajadol', hasChild:true, combo:'tajadol'},
+	{title:'Putotyra', hasChild:true, combo:'putotyra'},
 ];
 
 // create table view
