@@ -24,7 +24,9 @@ driver.addEventListener('click', function()
 {
     var f = Titanium.Filesystem.getFile('sounds/' + win.combo + '.mp3');
     if (f.exists()) {
-	    sound.play();
+        sound.play();
+    } else {
+        alert('歌（がないの）は気にするな！');
     }
     driver.animate(anime);
 });
