@@ -2,11 +2,11 @@ var win = Titanium.UI.currentWindow;
 
 // createImageView, createAnimation, createSound
 var belt = Titanium.UI.createImageView({
-	image:'../images/belt.png',
+    image:'../images/belt.png',
     width: 400,
 });
 var driver = Titanium.UI.createImageView({
-	image:'../images/' + win.combo + '.png',
+    image:'../images/' + win.combo + '.png',
     width: 400,
 });
 var anime = Titanium.UI.createAnimation({
@@ -38,9 +38,28 @@ var scrollview = Titanium.UI.createScrollView({
 scrollview.add(webview);
 scrollview.hide();
 
+// back, reload, forward button_bar
+var brf_button = Titanium.UI.createButtonBar({
+    labels:['Back', 'Reload', 'Forward'],
+    backgroundColor:'black'
+});
+var flexSpace = Ti.UI.createButton({
+    systemButton:Ti.UI.iPhone.SystemButton.FLEXIBLE_SPACE
+});
+brf_button.addEventListener('click',function(ce) {
+    if (ce.index == 0) {
+        webview.goBack();
+    } else if (ce.index == 1) {
+        webview.reload();
+    } else {
+        webview.goForward();
+    }
+});
+
 // addEventListener
 webview.addEventListener('load', function()
 {
+    Ti.API.debug("url = "+webview.url);
     scrollview.scrollTo(0, 225);
 });
 driver.addEventListener('click', function()
@@ -56,6 +75,7 @@ sound.addEventListener('complete', function()
         transform: Ti.UI.create2DMatrix(),
         duration: 300,
     });
+    win.setToolbar([flexSpace, brf_button, flexSpace]);
 });
 
 // win.add
