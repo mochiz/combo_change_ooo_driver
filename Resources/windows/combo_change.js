@@ -24,8 +24,44 @@ var sound = Titanium.Media.createSound({
         sound.play();
     }
 });
+var webview = Ti.UI.createWebView({
+    url: 'http://www.tv-asahi.co.jp/ooo/rider/' + win.combo + '.html',
+});
+var scrollview = Titanium.UI.createScrollView({
+    contentWidth:'auto',
+    contentHeight:1000,
+    showVerticalScrollIndicator:true,
+    showHorizontalScrollIndicator:true,
+    transform: Ti.UI.create2DMatrix().scale(0),
+
+});
+scrollview.add(webview);
+scrollview.hide();
+
+// back, reload, forward button_bar
+var brf_button = Titanium.UI.createButtonBar({
+    labels:['Back', 'Reload', 'Forward'],
+    backgroundColor:'black'
+});
+var flexSpace = Ti.UI.createButton({
+    systemButton:Ti.UI.iPhone.SystemButton.FLEXIBLE_SPACE
+});
+brf_button.addEventListener('click',function(ce) {
+    if (ce.index == 0) {
+        webview.goBack();
+    } else if (ce.index == 1) {
+        webview.reload();
+    } else {
+        webview.goForward();
+    }
+});
 
 // addEventListener
+webview.addEventListener('load', function()
+{
+    Ti.API.debug("url = "+webview.url);
+    scrollview.scrollTo(0, 225);
+});
 driver.addEventListener('click', function()
 {
     driver.animate(anime);
@@ -34,15 +70,15 @@ driver.addEventListener('click', function()
 sound.addEventListener('complete', function()
 {
     Ti.API.info('tatoba complete');
-    var win1 = Titanium.UI.createWindow({
-		url:'../windows/rider_view.js',
-        barColor:'black',
-        title: win.title,
-        combo: win.combo,
-	});
-	Ti.UI.currentTab.open(win1,{animated:true});
+    scrollview.show();
+    scrollview.animate({
+        transform: Ti.UI.create2DMatrix(),
+        duration: 300,
+    });
+    win.setToolbar([flexSpace, brf_button, flexSpace]);
 });
 
 // win.add
 win.add(belt);
 win.add(driver);
+win.add(scrollview);
