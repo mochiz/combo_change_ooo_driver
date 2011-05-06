@@ -16,7 +16,7 @@ var anime = Titanium.UI.createAnimation({
 var sound = Titanium.Media.createSound({
     url:'../sounds/' + win.combo + '.mp3',
     file_exists_and_play: function() {
-        f = Ti.Filesystem.getFile('sounds/' + win.combo + 'hoge.mp3');
+        f = Ti.Filesystem.getFile('sounds/' + win.combo + '.mp3');
         if (!f.exists()) {
             alert('歌（がないの）は気にするな！')
             return;
