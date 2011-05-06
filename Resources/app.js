@@ -4,7 +4,6 @@ Titanium.UI.setBackgroundColor('#000');
 // create tab group
 var tabGroup = Titanium.UI.createTabGroup();
 
-
 //
 // create base UI tab and root window
 //
@@ -26,4 +25,8 @@ win1.orientationModes = [Titanium.UI.LANDSCAPE_RIGHT];
 //
 win1.hideTabBar();
 tabGroup.addTab(tab1);  
-tabGroup.open();
+
+// delay splash screen
+setTimeout(function() {
+    tabGroup.open();
+}, 3000);
