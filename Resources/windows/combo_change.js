@@ -16,14 +16,16 @@ var driver = Titanium.UI.createImageView({
 // createAnimation
 var anime = Titanium.UI.createAnimation({
     transform: Ti.UI.create2DMatrix({rotate: 28}),
-    duration: 500,
+    duration: 200,
 });
 
 // addEventListener
 driver.addEventListener('click', function()
 {
-	sound.play();
-	// pb.max = sound.duration;
+    var f = Titanium.Filesystem.getFile('sounds/' + win.combo + '.mp3');
+    if (f.exists()) {
+	    sound.play();
+    }
     driver.animate(anime);
 });
 
