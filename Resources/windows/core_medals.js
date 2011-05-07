@@ -1,12 +1,12 @@
 // create table view data object
 var data = [
-	{title:'Tatoba', hasChild:true, combo:'tatoba', color:{1:'red', 2:'yellow', 3:'green'}},
-	{title:'Gatakiriba', hasChild:true, combo:'gatakiriba', color:{1:'green', 2:'green', 3:'green'}},
-	{title:'Latorartar', hasChild:true, combo:'latorartar', color:{1:'yellow', 2:'yellow', 3:'yellow'}},
-	{title:'Sagohzo', hasChild:true, combo:'sagohzo', color:{1:'silver', 2:'silver', 3:'silver'}},
-	{title:'Shauta', hasChild:true, combo:'shauta', color:{1:'blue', 2:'blue', 3:'blue'}},
-	{title:'Tajadol', hasChild:true, combo:'tajadol', color:{1:'red', 2:'red', 3:'red'}},
-	{title:'Putotyra', hasChild:true, combo:'putotyra', color:{1:'purple', 2:'purple', 3:'purple'}},
+	{title:'Tatoba', hasChild:true, combo:'tatoba', color:{0:'red', 1:'yellow', 2:'green'}},
+	{title:'Gatakiriba', hasChild:true, combo:'gatakiriba', color:{0:'green', 1:'green', 2:'green'}},
+	{title:'Latorartar', hasChild:true, combo:'latorartar', color:{0:'yellow', 1:'yellow', 2:'yellow'}},
+	{title:'Sagohzo', hasChild:true, combo:'sagohzo', color:{0:'silver', 1:'silver', 2:'silver'}},
+	{title:'Shauta', hasChild:true, combo:'shauta', color:{0:'blue', 1:'blue', 2:'blue'}},
+	{title:'Tajadol', hasChild:true, combo:'tajadol', color:{0:'red', 1:'red', 2:'red'}},
+	{title:'Putotyra', hasChild:true, combo:'putotyra', color:{0:'purple', 1:'purple', 2:'purple'}},
 ];
 
 // create table view
