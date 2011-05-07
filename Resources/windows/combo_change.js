@@ -137,8 +137,8 @@ anime.addEventListener('complete', function()
 
     // 変身音ファイルがない場合、歌は気にするな！
     if (!sound.has_sound_file()) {
-        setTimeout(function() { scrollview.show_rider(); }, 7000);
-        setTimeout(function() { orangu_circle.vanish() }, 10000);
+        setTimeout(function() { orangu_circle.vanish() }, 8000);
+        setTimeout(function() { scrollview.show_rider(); }, 8300);
     }
 });
 sound.addEventListener('complete', function()
@@ -197,7 +197,7 @@ var orangu_circle = Ti.UI.createImageView({
         this.animate({
             transform: Ti.UI.create2DMatrix({scale: 1.6}),
             zIndex: 1,
-            duration: 1500,
+            duration: 1000,
         });
     },
     vanish: function() {
