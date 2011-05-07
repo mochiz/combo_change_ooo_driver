@@ -132,19 +132,6 @@ anime.addEventListener('complete', function()
                             core_flash[1][1].vanish();
                             core_flash[2][1].vanish();
                           }, 4000);
-    setTimeout(function() { sparks[0].flash(0) }, 2300);
-    setTimeout(function() { sparks[1].flash(1) }, 2300);
-    setTimeout(function() { sparks[2].flash(2) }, 2300);
-    setTimeout(function() { sparks[3].flash(3) }, 2300);
-    setTimeout(function() { sparks[4].flash(4) }, 2600);
-    setTimeout(function() { sparks[5].flash(5) }, 2600);
-    setTimeout(function() { sparks[6].flash(6) }, 2600);
-    setTimeout(function() { sparks[7].flash(7) }, 2600);
-    setTimeout(function() { sparks[8].flash(8) }, 2900);
-    setTimeout(function() { sparks[9].flash(9) }, 2900);
-    setTimeout(function() { sparks[10].flash(10) }, 2900);
-    setTimeout(function() { sparks[11].flash(11) }, 2900);
-
 
     // 変身音ファイルがない場合、歌は気にするな！
     if (!sound.has_sound_file()) {
@@ -195,47 +182,8 @@ for(var i=0;i<=2;i++) {
     core_flash[i][1].scale = 2.2;
 }
 
-// spark!
-var spark_positions = [
-    {top:70, left:110, terminal_top:50, terminal_left:-270},
-    {top:120, left:110, terminal_top:110, terminal_left:-20},
-    {top:70, left:170, terminal_top:-20, terminal_left:140},
-    {top:120, left:170, terminal_top:-20, terminal_left:150},
-    {top:120, left:210, terminal_top:100, terminal_left:-20},
-    {top:170, left:210, terminal_top:160, terminal_left:-20},
-    {top:120, left:270, terminal_top:-20, terminal_left:230},
-    {top:170, left:270, terminal_top:-20, terminal_left:250},
-    {top:170, left:310, terminal_top:-20, terminal_left:-20},
-    {top:220, left:310, terminal_top:-20, terminal_left:-100},
-    {top:170, left:370, terminal_top:-220, terminal_left:230},
-    {top:220, left:370, terminal_top:-20, terminal_left:250},
-];
-
-var sparks = new Array();
-for(var i=0;i<12;i++) {
-    sparks[i] = Ti.UI.createView({
-        height:10,
-        width:10,
-        borderRadius:5,
-        backgroundColor:'#ffd700',
-        opacity:0.6,
-        top: spark_positions[i].top,
-        left: spark_positions[i].left,
-        visible: false,
-        flash: function(i) {
-            this.show();
-            this.animate(Ti.UI.createAnimation({
-                top: spark_positions[i].terminal_top,
-                left: spark_positions[i].terminal_left,
-                duration: 1500,
-            }));
-        },
-    });
-}
-
 // win.add
 win.add(belt);
-win.add(sparks);
 win.add(driver);
 win.add(cover);
 win.add(scrollview);
