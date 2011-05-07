@@ -4,29 +4,22 @@ Titanium.UI.setBackgroundColor('#000');
 // create tab group
 var tabGroup = Titanium.UI.createTabGroup();
 
-//
 // create base UI tab and root window
-//
-var win1 = Titanium.UI.createWindow({  
-    title:'ComboChange!',
-	barColor:'black',
+var win = Titanium.UI.createWindow({
+    navBarHidden: true,
+    tabBarHidden: true,
     url:'windows/core_medals.js',
 });
 
-var tab1 = Titanium.UI.createTab({  
+var tab = Titanium.UI.createTab({
     title:'Core Medals',
-    window:win1
+    window:win
 });
 
-win1.orientationModes = [Titanium.UI.LANDSCAPE_RIGHT];
-
-//
 //  add tabs
-//
-win1.hideTabBar();
 tabGroup.addTab(tab1);  
 
 // delay splash screen
 setTimeout(function() {
     tabGroup.open();
-}, 3000);
+}, 2000);

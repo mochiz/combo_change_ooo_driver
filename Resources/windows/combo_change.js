@@ -1,4 +1,7 @@
 var win = Titanium.UI.currentWindow;
+win.orientationModes = [Titanium.UI.LANDSCAPE_RIGHT];
+win.title = win.combo;
+win.showNavBar();
 
 // createImageView, createAnimation, createSound
 var belt = Titanium.UI.createImageView({

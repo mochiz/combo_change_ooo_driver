@@ -10,16 +10,30 @@ var data = [
 ];
 
 // create table view
-var tableview = Titanium.UI.createTableView({
-	data:data
-});
+var tableview = Titanium.UI.createTableView();
+
+var idx = 1;
+for (var i in data) {
+    var row = Ti.UI.createTableViewRow({
+        height: 65,
+        className: 'image',
+        hasChild:true,
+        combo: data[i].combo,
+        color: data[i].color,
+    });
+    var imgView = Ti.UI.createImageView({
+        image: '../images/combo_medals_' + data[i].combo + '.png',
+		row: idx++
+    });
+    row.add(imgView);
+    tableview.appendRow(row);
+}
 
 // create table view event listener
 tableview.addEventListener('click', function(e)
 {
 	var win = Titanium.UI.createWindow({
 		url:'../windows/combo_change.js',
-		title:e.rowData.title,
         combo:e.rowData.combo,
         color:e.rowData.color,
         barColor:'black',
