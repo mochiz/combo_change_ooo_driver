@@ -133,15 +133,19 @@ anime.addEventListener('complete', function()
                             core_flash[2][1].vanish();
                           }, 4000);
 
+    setTimeout(function() { orangu_circle.flash()}, 7000);
+
     // 変身音ファイルがない場合、歌は気にするな！
     if (!sound.has_sound_file()) {
         setTimeout(function() { scrollview.show_rider(); }, 7000);
+        setTimeout(function() { orangu_circle.vanish() }, 10000);
     }
 });
 sound.addEventListener('complete', function()
 {
     Ti.API.info('tatoba complete');
-    // scrollview.show_rider();
+    orangu_circle.vanish();
+    setTimeout(function() { scrollview.show_rider() }, 300);
 });
 
 // core_flash!
@@ -182,6 +186,29 @@ for(var i=0;i<=2;i++) {
     core_flash[i][1].scale = 2.2;
 }
 
+// オーラングサークルオブジェクトの生成
+var orangu_circle = Ti.UI.createImageView({
+    width: 200,
+    image:'../images/orangu_' + win.combo + '.png',
+    opacity:0.7,
+    visible: false,
+    flash: function() {
+        this.show();
+        this.animate({
+            transform: Ti.UI.create2DMatrix({scale: 1.6}),
+            zIndex: 1,
+            duration: 1500,
+        });
+    },
+    vanish: function() {
+        this.animate({
+            transform: Ti.UI.create2DMatrix({scale: 0.01}),
+            zIndex: 1,
+            duration: 500,
+        });
+    },
+});
+
 // win.add
 win.add(belt);
 win.add(driver);
@@ -189,3 +216,4 @@ win.add(cover);
 win.add(scrollview);
 win.add(core_flash);
 win.add(o_scanner);
+win.add(orangu_circle);
