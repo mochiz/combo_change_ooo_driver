@@ -17,7 +17,7 @@ var tab = Titanium.UI.createTab({
 });
 
 //  add tabs
-tabGroup.addTab(tab1);  
+tabGroup.addTab(tab);
 
 // delay splash screen
 setTimeout(function() {
