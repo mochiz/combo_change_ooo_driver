@@ -1,5 +1,5 @@
 var win = Titanium.UI.currentWindow;
-win.orientationModes = [Titanium.UI.LANDSCAPE_RIGHT];
+win.orientationModes = [Titanium.UI.LANDSCAPE_LEFT];
 win.title = win.combo;
 win.showNavBar();
 
