@@ -2,4 +2,5 @@ tmp
 build/iphone/*
 build/android/*
 Resources/sounds/*
+Resources/images/*
 .DS_Store
