@@ -178,7 +178,7 @@ o_scanner.addEventListener('swipe', function(e)
     // 変身音ファイルがない場合、歌は気にするな！
     if (!tatoba_sound.has_sound_file()) {
         setTimeout(function() { orangu_circle.vanish() }, 5100);
-        setTimeout(function() { scrollview.show_rider(); }, 5400);
+        setTimeout(function() { scrollview.show_rider(); }, 6100);
     }
 });
 
