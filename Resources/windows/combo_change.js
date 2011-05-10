@@ -154,9 +154,10 @@ cover.addEventListener('complete', function()
 });
 o_scanner.addEventListener('swipe', function(e)
 {
-    charging_sound.pause();
     o_scanner.slash();
-    setTimeout(function() { core_slash_sound.play();}, 300);
+    setTimeout(function() { core_slash_sound.play();
+                            charging_sound.pause();
+                          }, 300);
     setTimeout(function() { core_flash[0][0].flash(),
                             core_flash[0][1].flash(),
                           }, 300);
@@ -176,14 +177,14 @@ o_scanner.addEventListener('swipe', function(e)
     setTimeout(function() { orangu_circle.flash()}, 4100);
     // 変身音ファイルがない場合、歌は気にするな！
     if (!tatoba_sound.has_sound_file()) {
-        setTimeout(function() { orangu_circle.vanish() }, 4100);
-        setTimeout(function() { scrollview.show_rider(); }, 4400);
+        setTimeout(function() { orangu_circle.vanish() }, 5100);
+        setTimeout(function() { scrollview.show_rider(); }, 5400);
     }
 });
 
 core_slash_sound.addEventListener('complete', function()
 {
-    tatoba_sound.play();
+    tatoba_sound.file_exists_and_play();
 });
 
 anime.addEventListener('complete', function()
