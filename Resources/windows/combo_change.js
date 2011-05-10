@@ -1,6 +1,5 @@
 var win = Titanium.UI.currentWindow;
-win.orientationModes = [Titanium.UI.LANDSCAPE_LEFT
-];
+win.orientationModes = [Titanium.UI.LANDSCAPE_LEFT];
 win.title = win.combo;
 win.showNavBar();
 
@@ -62,6 +61,7 @@ var tatoba_sound = Titanium.Media.createSound({
     },
 });
 tatoba_sound.file_exists_and_preload();
+
 var raise_sound = Titanium.Media.createSound({
     url:'../sounds/driver_raise.mp3',
     preload:true,
@@ -143,7 +143,6 @@ cover.addEventListener('click', function()
     driver.animate(anime);
     cover.animate(anime);
     raise_sound.play();
-    // sound.file_exists_and_play();
 });
 raise_sound.addEventListener('complete', function()
 {
@@ -155,7 +154,6 @@ cover.addEventListener('complete', function()
 });
 o_scanner.addEventListener('swipe', function(e)
 {
-    // tatoba_sound.file_exists_and_play();
     charging_sound.pause();
     o_scanner.slash();
     setTimeout(function() { core_slash_sound.play();}, 300);
