@@ -1,5 +1,6 @@
 var win = Titanium.UI.currentWindow;
-win.orientationModes = [Titanium.UI.LANDSCAPE_LEFT];
+win.orientationModes = [Titanium.UI.LANDSCAPE_LEFT
+];
 win.title = win.combo;
 win.showNavBar();
 
@@ -23,8 +24,8 @@ var anime = Titanium.UI.createAnimation({
 
 // オースキャナーオブジェクトの生成
 var o_scanner = Ti.UI.createImageView({
-    top: -300,
-    left: -200,
+    top: -200,
+    left: -50,
     width: 200,
     image:'../images/o_scanner.png',
     visible: false,
@@ -33,13 +34,13 @@ var o_scanner = Ti.UI.createImageView({
         this.animate(Ti.UI.createAnimation({
             top: 350,
             left: 600,
-            duration: 2500,
+            duration: 2000,
         }));
     },
 });
 
 // 変身音オブジェクトの生成と音声ファイルのプリロード
-var sound = Titanium.Media.createSound({
+var tatoba_sound = Titanium.Media.createSound({
     url:'../sounds/' + win.combo + '.mp3',
     preload:true,
     has_sound_file: function() {
@@ -57,10 +58,38 @@ var sound = Titanium.Media.createSound({
             alert('歌（がないの）は気にするな！')
             return;
         }
-        sound.play();
+        this.play();
     },
 });
-sound.file_exists_and_preload();
+tatoba_sound.file_exists_and_preload();
+var raise_sound = Titanium.Media.createSound({
+    url:'../sounds/driver_raise.mp3',
+    preload:true,
+    preload: function() {
+        this.play();
+        this.pause();
+    },
+});
+var charging_sound = Titanium.Media.createSound({
+    url:'../sounds/charging.mp3',
+    preload:true,
+    looping:true,
+    preload: function() {
+        this.play();
+        this.pause();
+    },
+});
+var core_slash_sound = Titanium.Media.createSound({
+    url:'../sounds/core_slash.mp3',
+    preload:true,
+    preload: function() {
+        this.play();
+        this.pause();
+    },
+});
+raise_sound.preload();
+charging_sound.preload();
+core_slash_sound.preload();
 
 // ライダー詳細webページ
 var webview = Ti.UI.createWebView({
@@ -113,38 +142,58 @@ cover.addEventListener('click', function()
     Ti.API.debug("driver animation start");
     driver.animate(anime);
     cover.animate(anime);
-    sound.file_exists_and_play();
+    raise_sound.play();
+    // sound.file_exists_and_play();
 });
-anime.addEventListener('complete', function()
+raise_sound.addEventListener('complete', function()
 {
-    Ti.API.debug("o_scanner animation start");
-    setTimeout(function() { o_scanner.slash() }, 1500);
+    setTimeout(function() { charging_sound.play(); }, 200);
+});
+cover.addEventListener('complete', function()
+{
+    o_scanner.show();
+});
+o_scanner.addEventListener('swipe', function(e)
+{
+    // tatoba_sound.file_exists_and_play();
+    charging_sound.pause();
+    o_scanner.slash();
+    setTimeout(function() { core_slash_sound.play();}, 300);
     setTimeout(function() { core_flash[0][0].flash(),
                             core_flash[0][1].flash(),
-                          }, 2300);
+                          }, 300);
     setTimeout(function() { core_flash[1][0].flash(),
                             core_flash[1][1].flash(),
-                          }, 2600);
+                          }, 600);
     setTimeout(function() { core_flash[2][0].flash(),
                             core_flash[2][1].flash(),
-                          }, 2900);
+                          }, 900);
     setTimeout(function() { core_flash[0][0].vanish();
                             core_flash[1][0].vanish();
                             core_flash[2][0].vanish();
                             core_flash[0][1].vanish();
                             core_flash[1][1].vanish();
                             core_flash[2][1].vanish();
-                          }, 4000);
-
-    setTimeout(function() { orangu_circle.flash()}, 7000);
-
+                          }, 1400);
+    setTimeout(function() { orangu_circle.flash()}, 4100);
     // 変身音ファイルがない場合、歌は気にするな！
-    if (!sound.has_sound_file()) {
-        setTimeout(function() { orangu_circle.vanish() }, 8000);
-        setTimeout(function() { scrollview.show_rider(); }, 8300);
+    if (!tatoba_sound.has_sound_file()) {
+        setTimeout(function() { orangu_circle.vanish() }, 4100);
+        setTimeout(function() { scrollview.show_rider(); }, 4400);
     }
 });
-sound.addEventListener('complete', function()
+
+core_slash_sound.addEventListener('complete', function()
+{
+    tatoba_sound.play();
+});
+
+anime.addEventListener('complete', function()
+{
+    Ti.API.debug("o_scanner animation start");
+    o_scanner.show();
+});
+tatoba_sound.addEventListener('complete', function()
 {
     Ti.API.info('tatoba complete');
     orangu_circle.vanish();
