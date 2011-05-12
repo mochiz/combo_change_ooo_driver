@@ -208,7 +208,7 @@ o_scanner.addEventListener('touchmove', function(e)
                                         win.showNavBar();}, 2000);
                 return
             }
-            tatoba_sound.file_exists_and_play();
+            setTimeout(function() { tatoba_sound.file_exists_and_play(); }, 1500);
         }
     }
 });
