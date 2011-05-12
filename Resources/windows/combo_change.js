@@ -54,7 +54,6 @@ var tatoba_sound = Titanium.Media.createSound({
     },
     file_exists_and_play: function() {
         if (!this.has_sound_file()){
-            alert('歌（がないの）は気にするな！')
             return;
         }
         this.play();
@@ -184,6 +183,7 @@ o_scanner.addEventListener('touchmove', function(e)
             core_flash[1][1].flash();
         }
     }
+
     if (!core_flash[2][0].flashed) {
         if ((newX > 320 && newX < 390)
             && (newY > 150 && newY < 280)) {
@@ -202,8 +202,10 @@ o_scanner.addEventListener('touchmove', function(e)
                                   }, 500);
             orangu_circle.flash();
             if (!tatoba_sound.has_sound_file()) {
+                alert('歌（がないの）は気にするな！');
                 setTimeout(function() { orangu_circle.vanish() }, 1000);
-                setTimeout(function() { scrollview.show_rider(); }, 2000);
+                setTimeout(function() { scrollview.show_rider();
+                                        win.showNavBar();}, 2000);
                 return
             }
             tatoba_sound.file_exists_and_play();
