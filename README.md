@@ -6,7 +6,8 @@ What's this?
 
 平成ライダーシリーズが好きすぎてつくってしまった、Titanium Mobile製の変身ベルトiPhoneアプリです。  
 コアメダルを選択することで、任意のコンボへ変身することができます。  
-こんな感じでアクションします [YouTube - Combo Change! Kamen Rider Ooo (zoom in)](http://www.youtube.com/watch?v=T_W2Fq0qTfc)
+こんな感じでアクションします。 [YouTube - Combo Change! Kamen Rider Ooo (zoom in)](http://www.youtube.com/watch?v=T_W2Fq0qTfc)  
+オースキャナをスワイプするアクションを追加しました。[YouTube - Combo Change! Kamen Rider Ooo Ver2](http://www.youtube.com/watch?v=TlCTOWZ6FYQ)
 
 How To Use?
 --------
