@@ -8,7 +8,7 @@ What's this?
 コアメダルを選択することで、任意のコンボへ変身することができます。  
 こんな感じでアクションします。 [YouTube - Combo Change! Kamen Rider Ooo (zoom in)](http://www.youtube.com/watch?v=T_W2Fq0qTfc)  
 <del>オースキャナをスワイプするアクションを追加しました。[YouTube - Combo Change! Kamen Rider Ooo Ver2](http://www.youtube.com/watch?v=TlCTOWZ6FYQ)</del>  
-オースキャナーを指で操作する機能を追加しました。[YouTube - Combo Change! Kamen Rider Ooo Ver3.mov](http://www.youtube.com/watch?v=ZK_ZyobEmrA)
+オースキャナーを指で操作する機能を追加しました。[YouTube - Combo Change! Kamen Rider Ooo Ver4](http://www.youtube.com/watch?v=1WStpL5yjwo)
 
 How To Use?
 --------
