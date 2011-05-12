@@ -24,7 +24,7 @@ var anime = Titanium.UI.createAnimation({
 
 // オースキャナーオブジェクトの生成
 var o_scanner = Ti.UI.createImageView({
-    top: -70,
+    top: -80,
     left: -70,
     height: 200,
     width: 200,
@@ -159,9 +159,8 @@ cover.addEventListener('complete', function()
 
 o_scanner.addEventListener('touchmove', function(e)
 {
-	// Ti.API.debug('Our event tells us the center is ' + e.x + ', ' + e.y );
 	var newX = e.x + o_scanner.animatedCenter.x - o_scanner.width/2;
-	var newY = e.y + o_scanner.animatedCenter.y - o_scanner.height/2;
+	var newY = newX * 0.6;
 	o_scanner.animate({center:{x:newX,y:newY}, duration:50});
 
     // Ti.API.info('x:' + newX);
@@ -202,7 +201,6 @@ o_scanner.addEventListener('touchmove', function(e)
                                     core_flash[0][1].vanish();
                                     core_flash[1][1].vanish();
                                     core_flash[2][1].vanish();
-                                    o_scanner.hide();
                                   }, 500);
             orangu_circle.flash();
             if (!tatoba_sound.has_sound_file()) {
@@ -215,6 +213,11 @@ o_scanner.addEventListener('touchmove', function(e)
             setTimeout(function() { tatoba_sound.file_exists_and_play(); }, 1500);
         }
     }
+});
+
+o_scanner.addEventListener('touchend', function()
+{
+    o_scanner.hide();
 });
 
 anime.addEventListener('complete', function()
