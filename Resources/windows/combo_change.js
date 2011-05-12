@@ -11,6 +11,7 @@ var belt = Titanium.UI.createImageView({
 var driver = Titanium.UI.createImageView({
     image:'../images/' + win.combo + '.png',
     width: 480,
+    changed: false,
 });
 var cover = Ti.UI.createImageView({
     image:'../images/cover.png',
@@ -138,10 +139,13 @@ webview.addEventListener('load', function()
 });
 cover.addEventListener('click', function()
 {
-    Ti.API.debug("driver animation start");
-    driver.animate(anime);
-    cover.animate(anime);
-    raise_sound.play();
+    if (!driver.changed) {
+        Ti.API.debug("driver animation start");
+        driver.changed = true;
+        driver.animate(anime);
+        cover.animate(anime);
+        raise_sound.play();
+    }
 });
 raise_sound.addEventListener('complete', function()
 {
