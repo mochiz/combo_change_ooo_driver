@@ -15,6 +15,14 @@ How To Use?
 
 - コードをダウンロードし、Titanium DeveloperでLaunchしてください。
   - 参考：[Titanium Mobileで作る！ iPhone／Androidアプリ：第1回　まずはTitaniumを体験してみよう｜gihyo.jp … 技術評論社](http://gihyo.jp/dev/serial/01/titanium/0001)
+- 操作方法
+  - こんな感じで動作します。
+  - [YouTube - Combo Change! Kamen Rider Ooo Ver4](http://www.youtube.com/watch?v=1WStpL5yjwo)
+  - コアメダル選択画面からお好きなコンボをクリックしてください。
+  - 表示されるドライバーをクリックすると、オースキャナーが現れます。
+  - オースキャナーをクリックしたまま、コアメダルをなぞるようにスキャンしてください。
+  - 串田アキラの重厚な変身ソングが流れれば、気分はもう仮面ライダーオーズ。
+  - ドライバー画面を開くと、変身を完了しない限りコアメダル選択画面へ戻ることはできません。
 
 
 工夫したところ
@@ -26,7 +34,8 @@ How To Use?
   - 複数のアニメーションをオブジェクトメソッドとして実装
 - Titanium Mobile API
   - Ti.UI.createImageView, Ti.UI.createTableView, Ti.UI.createTableViewRowで、コアメダルテーブル表示
-  - Ti.UI.createAnimationで、オースキャナ、ドライバーなどの画像アニメーション
+  - Ti.UI.createAnimationで、ドライバーなどの画像アニメーション
+  - o_scanner.addEventListener('touchmove'..)で、オースキャナーの制御
   - Ti.Media.createSoundで、タ・ト・バ♪などのコンボチェンジサウンド
   - Ti.UI.createWebViewで、公式webのライダー詳細を表示
   - Ti.UI.createScrollViewで、公式webの表示位置を調整
