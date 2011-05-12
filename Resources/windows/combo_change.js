@@ -156,17 +156,18 @@ cover.addEventListener('complete', function()
     o_scanner.show();
 });
 
-
+// ひどい実装なのでなんとかしたい
+var baseX = 0;
 o_scanner.addEventListener('touchmove', function(e)
 {
-	var newX = e.x + o_scanner.animatedCenter.x - o_scanner.width/2;
-	var newY = newX * 0.6;
-	o_scanner.animate({center:{x:newX,y:newY}, duration:50});
+    var newX = e.x + o_scanner.animatedCenter.x - o_scanner.width/2;
+    if (baseX > newX) {
+        return;
+    }
+    baseX = newX;
+    var newY = newX * 0.6;
+    o_scanner.animate({center:{x:newX,y:newY}, duration:50});
 
-    // Ti.API.info('x:' + newX);
-    // Ti.API.info('y:' + newY);
-
-    // ひどい実装なのでなおそうね
     if (!core_flash[0][0].flashed) {
         if ((newX > 80 && newX < 140)
             && (newY > 50 && newY < 160)) {
@@ -217,7 +218,9 @@ o_scanner.addEventListener('touchmove', function(e)
 
 o_scanner.addEventListener('touchend', function()
 {
-    o_scanner.hide();
+    if (core_flash[2][0].flashed) {
+        o_scanner.hide();
+    }
 });
 
 anime.addEventListener('complete', function()
