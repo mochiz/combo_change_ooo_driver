@@ -159,7 +159,7 @@ o_scanner.addEventListener('touchmove', function(e)
 	// Ti.API.debug('Our event tells us the center is ' + e.x + ', ' + e.y );
 	var newX = e.x + o_scanner.animatedCenter.x - o_scanner.width/2;
 	var newY = e.y + o_scanner.animatedCenter.y - o_scanner.height/2;
-	o_scanner.animate({center:{x:newX,y:newY}, duration:5});
+	o_scanner.animate({center:{x:newX,y:newY}, duration:50});
 
     // Ti.API.info('x:' + newX);
     // Ti.API.info('y:' + newY);
@@ -167,7 +167,7 @@ o_scanner.addEventListener('touchmove', function(e)
     // ひどい実装なのでなおそうね
     if (!core_flash[0][0].flashed) {
         if ((newX > 80 && newX < 140)
-            && (newY > 70 && newY < 120)) {
+            && (newY > 50 && newY < 160)) {
             core_flash[0][0].flashed = true;
             core_flash[0][0].sound.play();
             core_flash[0][0].flash();
@@ -176,8 +176,8 @@ o_scanner.addEventListener('touchmove', function(e)
     }
 
     if (!core_flash[1][0].flashed) {
-        if ((newX > 200 && newX < 240)
-            && (newY > 120 && newY < 170)) {
+        if ((newX > 200 && newX < 260)
+            && (newY > 100 && newY < 210)) {
             core_flash[1][0].flashed = true;
             core_flash[1][0].sound.play();
             core_flash[1][0].flash();
@@ -185,8 +185,8 @@ o_scanner.addEventListener('touchmove', function(e)
         }
     }
     if (!core_flash[2][0].flashed) {
-        if ((newX > 320 && newX < 370)
-            && (newY > 190 && newY < 240)) {
+        if ((newX > 320 && newX < 390)
+            && (newY > 150 && newY < 280)) {
             core_flash[2][0].flashed = true;
             core_flash[2][0].sound.play();
             core_flash[2][0].flash();
