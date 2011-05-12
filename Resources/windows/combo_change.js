@@ -1,7 +1,7 @@
 var win = Titanium.UI.currentWindow;
+
 win.orientationModes = [Titanium.UI.LANDSCAPE_LEFT];
 win.title = win.combo;
-win.showNavBar();
 
 // createImageView, createAnimation, createSound
 var belt = Titanium.UI.createImageView({
@@ -23,13 +23,13 @@ var anime = Titanium.UI.createAnimation({
 
 // オースキャナーオブジェクトの生成
 var o_scanner = Ti.UI.createImageView({
-    top: -200,
-    left: -50,
+    top: -70,
+    left: -70,
+    height: 200,
     width: 200,
     image:'../images/o_scanner.png',
     visible: false,
-    slash: function() {
-        this.show();
+    vanish: function() {
         this.animate(Ti.UI.createAnimation({
             top: 350,
             left: 600,
@@ -152,39 +152,63 @@ cover.addEventListener('complete', function()
 {
     o_scanner.show();
 });
-o_scanner.addEventListener('swipe', function(e)
-{
-    o_scanner.slash();
-    setTimeout(function() { core_slash_sound.play();
-                            charging_sound.pause();
-                          }, 300);
-    setTimeout(function() { core_flash[0][0].flash(),
-                            core_flash[0][1].flash(),
-                          }, 300);
-    setTimeout(function() { core_flash[1][0].flash(),
-                            core_flash[1][1].flash(),
-                          }, 600);
-    setTimeout(function() { core_flash[2][0].flash(),
-                            core_flash[2][1].flash(),
-                          }, 900);
-    setTimeout(function() { core_flash[0][0].vanish();
-                            core_flash[1][0].vanish();
-                            core_flash[2][0].vanish();
-                            core_flash[0][1].vanish();
-                            core_flash[1][1].vanish();
-                            core_flash[2][1].vanish();
-                          }, 1400);
-    setTimeout(function() { orangu_circle.flash()}, 4100);
-    // 変身音ファイルがない場合、歌は気にするな！
-    if (!tatoba_sound.has_sound_file()) {
-        setTimeout(function() { orangu_circle.vanish() }, 5100);
-        setTimeout(function() { scrollview.show_rider(); }, 6100);
-    }
-});
 
-core_slash_sound.addEventListener('complete', function()
+
+o_scanner.addEventListener('touchmove', function(e)
 {
-    tatoba_sound.file_exists_and_play();
+	// Ti.API.debug('Our event tells us the center is ' + e.x + ', ' + e.y );
+	var newX = e.x + o_scanner.animatedCenter.x - o_scanner.width/2;
+	var newY = e.y + o_scanner.animatedCenter.y - o_scanner.height/2;
+	o_scanner.animate({center:{x:newX,y:newY}, duration:5});
+
+    // Ti.API.info('x:' + newX);
+    // Ti.API.info('y:' + newY);
+
+    // ひどい実装なのでなおそうね
+    if (!core_flash[0][0].flashed) {
+        if ((newX > 80 && newX < 140)
+            && (newY > 70 && newY < 120)) {
+            core_flash[0][0].flashed = true;
+            core_flash[0][0].sound.play();
+            core_flash[0][0].flash();
+            core_flash[0][1].flash();
+        }
+    }
+
+    if (!core_flash[1][0].flashed) {
+        if ((newX > 200 && newX < 240)
+            && (newY > 120 && newY < 170)) {
+            core_flash[1][0].flashed = true;
+            core_flash[1][0].sound.play();
+            core_flash[1][0].flash();
+            core_flash[1][1].flash();
+        }
+    }
+    if (!core_flash[2][0].flashed) {
+        if ((newX > 320 && newX < 370)
+            && (newY > 190 && newY < 240)) {
+            core_flash[2][0].flashed = true;
+            core_flash[2][0].sound.play();
+            core_flash[2][0].flash();
+            core_flash[2][1].flash();
+            setTimeout(function() { charging_sound.pause();
+                                    core_flash[0][0].vanish();
+                                    core_flash[1][0].vanish();
+                                    core_flash[2][0].vanish();
+                                    core_flash[0][1].vanish();
+                                    core_flash[1][1].vanish();
+                                    core_flash[2][1].vanish();
+                                    o_scanner.hide();
+                                  }, 500);
+            orangu_circle.flash();
+            if (!tatoba_sound.has_sound_file()) {
+                setTimeout(function() { orangu_circle.vanish() }, 1000);
+                setTimeout(function() { scrollview.show_rider(); }, 2000);
+                return
+            }
+            tatoba_sound.file_exists_and_play();
+        }
+    }
 });
 
 anime.addEventListener('complete', function()
@@ -195,15 +219,17 @@ anime.addEventListener('complete', function()
 tatoba_sound.addEventListener('complete', function()
 {
     Ti.API.info('tatoba complete');
+    win.showNavBar();
     orangu_circle.vanish();
+    scrollview.scrollTo(0, 225);
     setTimeout(function() { scrollview.show_rider() }, 300);
 });
 
 // core_flash!
 var flash_positions = [
-    {top: 40, left: 90},
-    {top: 100, left: 'auto'},
-    {top: 155, left: 305},
+    {top: 60, left: 85},
+    {top: 105, left: 'auto'},
+    {top: 165, left: 300},
 ];
 var core_flash = new Array();
 var vanish_anime = Ti.UI.createAnimation({opacity:0, duration:1500});
@@ -235,6 +261,11 @@ for(var i=0;i<=2;i++) {
     }
     core_flash[i][0].scale = 2;
     core_flash[i][1].scale = 2.2;
+    core_flash[i][0].sound = Titanium.Media.createSound({
+        url:'../sounds/medal_scan' + i + '.mp3',
+    });
+    core_flash[i][0].sound.play();
+    core_flash[i][0].sound.pause();
 }
 
 // オーラングサークルオブジェクトの生成
