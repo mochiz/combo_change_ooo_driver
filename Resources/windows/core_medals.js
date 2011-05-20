@@ -6,7 +6,7 @@ var data = [
 	{title:'Sagohzo', hasChild:true, combo:'sagohzo', color:{0:'silver', 1:'silver', 2:'silver'}},
 	{title:'Shauta', hasChild:true, combo:'shauta', color:{0:'blue', 1:'blue', 2:'blue'}},
 	{title:'Tajadol', hasChild:true, combo:'tajadol', color:{0:'red', 1:'red', 2:'red'}},
-	{title:'Putotyra', hasChild:true, combo:'putotyra', color:{0:'purple', 1:'purple', 2:'purple'}},
+	{title:'Putotyra', hasChild:true, combo:'putotyra', color:{0:'purple', 1:'purple', 2:'purple'}}
 ];
 
 // create table view
@@ -19,7 +19,7 @@ for (var i in data) {
         className: 'image',
         hasChild:true,
         combo: data[i].combo,
-        color: data[i].color,
+        color: data[i].color
     });
     var imgView = Ti.UI.createImageView({
         image: '../images/combo_medals_' + data[i].combo + '.png',
@@ -36,7 +36,7 @@ tableview.addEventListener('click', function(e)
 		url:'../windows/combo_change.js',
         combo:e.rowData.combo,
         color:e.rowData.color,
-        barColor:'black',
+        barColor:'black'
 	});
 	Titanium.UI.currentTab.open(win,{animated:true});
 });

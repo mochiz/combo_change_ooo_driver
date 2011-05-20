@@ -8,7 +8,7 @@ var tabGroup = Titanium.UI.createTabGroup();
 var win = Titanium.UI.createWindow({
     navBarHidden: true,
     tabBarHidden: true,
-    url:'windows/core_medals.js',
+    url:'windows/core_medals.js'
 });
 
 var tab = Titanium.UI.createTab({

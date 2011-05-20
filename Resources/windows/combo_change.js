@@ -6,20 +6,20 @@ win.title = win.combo;
 // createImageView, createAnimation, createSound
 var belt = Titanium.UI.createImageView({
     image:'../images/belt.png',
-    width: 480,
+    width: 480
 });
 var driver = Titanium.UI.createImageView({
     image:'../images/' + win.combo + '.png',
     width: 480,
-    changed: false,
+    changed: false
 });
 var cover = Ti.UI.createImageView({
     image:'../images/cover.png',
-    width: 480,
+    width: 480
 });
 var anime = Titanium.UI.createAnimation({
     transform: Ti.UI.create2DMatrix({rotate: 28}),
-    duration: 200,
+    duration: 200
 });
 
 // オースキャナーオブジェクトの生成
@@ -34,9 +34,9 @@ var o_scanner = Ti.UI.createImageView({
         this.animate(Ti.UI.createAnimation({
             top: 350,
             left: 600,
-            duration: 2000,
+            duration: 2000
         }));
-    },
+    }
 });
 
 // 変身音オブジェクトの生成と音声ファイルのプリロード
@@ -58,7 +58,7 @@ var tatoba_sound = Titanium.Media.createSound({
             return;
         }
         this.play();
-    },
+    }
 });
 tatoba_sound.file_exists_and_preload();
 
@@ -68,7 +68,7 @@ var raise_sound = Titanium.Media.createSound({
     preload: function() {
         this.play();
         this.pause();
-    },
+    }
 });
 var charging_sound = Titanium.Media.createSound({
     url:'../sounds/charging.mp3',
@@ -77,7 +77,7 @@ var charging_sound = Titanium.Media.createSound({
     preload: function() {
         this.play();
         this.pause();
-    },
+    }
 });
 var core_slash_sound = Titanium.Media.createSound({
     url:'../sounds/core_slash.mp3',
@@ -85,7 +85,7 @@ var core_slash_sound = Titanium.Media.createSound({
     preload: function() {
         this.play();
         this.pause();
-    },
+    }
 });
 raise_sound.preload();
 charging_sound.preload();
@@ -93,7 +93,7 @@ core_slash_sound.preload();
 
 // ライダー詳細webページ
 var webview = Ti.UI.createWebView({
-    url: 'http://www.tv-asahi.co.jp/ooo/rider/' + win.combo + '.html',
+    url: 'http://www.tv-asahi.co.jp/ooo/rider/' + win.combo + '.html'
 });
 var scrollview = Titanium.UI.createScrollView({
     contentWidth:'auto',
@@ -106,10 +106,10 @@ var scrollview = Titanium.UI.createScrollView({
         this.show();
         this.animate({
             transform: Ti.UI.create2DMatrix(),
-            duration: 300,
+            duration: 300
         });
         win.setToolbar([flexSpace, brf_button, flexSpace]);
-    },
+    }
 });
 scrollview.add(webview);
 
@@ -206,10 +206,10 @@ o_scanner.addEventListener('touchmove', function(e)
             orangu_circle.flash();
             if (!tatoba_sound.has_sound_file()) {
                 alert('歌（がないの）は気にするな！');
-                setTimeout(function() { orangu_circle.vanish() }, 1000);
+                setTimeout(function() { orangu_circle.vanish(); }, 1000);
                 setTimeout(function() { scrollview.show_rider();
                                         win.showNavBar();}, 2000);
-                return
+                return;
             }
             setTimeout(function() { tatoba_sound.file_exists_and_play(); }, 1500);
         }
@@ -234,14 +234,14 @@ tatoba_sound.addEventListener('complete', function()
     win.showNavBar();
     orangu_circle.vanish();
     scrollview.scrollTo(0, 225);
-    setTimeout(function() { scrollview.show_rider() }, 300);
+    setTimeout(function() { scrollview.show_rider(); }, 300);
 });
 
 // core_flash!
 var flash_positions = [
     {top: 60, left: 85},
     {top: 105, left: 'auto'},
-    {top: 165, left: 300},
+    {top: 165, left: 300}
 ];
 var core_flash = new Array();
 var vanish_anime = Ti.UI.createAnimation({opacity:0, duration:1500});
@@ -263,7 +263,7 @@ for(var i=0;i<=2;i++) {
                 this.animate({
                     transform: Ti.UI.create2DMatrix({scale: this.scale}),
                     zIndex: 1,
-                    duration: 500,
+                    duration: 500
                 });
             },
             vanish: function() {
@@ -274,7 +274,7 @@ for(var i=0;i<=2;i++) {
     core_flash[i][0].scale = 2;
     core_flash[i][1].scale = 2.2;
     core_flash[i][0].sound = Titanium.Media.createSound({
-        url:'../sounds/medal_scan' + i + '.mp3',
+        url:'../sounds/medal_scan' + i + '.mp3'
     });
     core_flash[i][0].sound.play();
     core_flash[i][0].sound.pause();
@@ -291,14 +291,14 @@ var orangu_circle = Ti.UI.createImageView({
         this.animate({
             transform: Ti.UI.create2DMatrix({scale: 1.6}),
             zIndex: 1,
-            duration: 1000,
+            duration: 1000
         });
     },
     vanish: function() {
         this.animate({
             transform: Ti.UI.create2DMatrix({scale: 0.01}),
             zIndex: 1,
-            duration: 500,
+            duration: 500
         });
     },
 });
