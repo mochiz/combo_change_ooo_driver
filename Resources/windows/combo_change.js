@@ -113,6 +113,25 @@ var scrollview = Titanium.UI.createScrollView({
 });
 scrollview.add(webview);
 
+// ひとしきり楽しんだら、DXオーズドライバーを購入しよう！
+var buy_now_view = Ti.UI.createWebView({
+    url: 'http://www.amazon.co.jp/dp/B0041FI7U0',
+    visible:false
+});
+var btnBuyNow = Ti.UI.createButton({
+    title:'BuyNow!',
+    height:'auto',
+    width:'auto'
+});
+btnBuyNow.addEventListener('click',function(e){
+    buy_now_view.show();
+    buy_now_view.animate({
+        transform: Ti.UI.create2DMatrix(),
+        duration: 300
+    });
+});
+win.rightNavButton = btnBuyNow;
+
 // back, reload, forward button_bar
 var brf_button = Titanium.UI.createButtonBar({
     labels:['Back', 'Reload', 'Forward'],
@@ -308,6 +327,7 @@ win.add(belt);
 win.add(driver);
 win.add(cover);
 win.add(scrollview);
+win.add(buy_now_view);
 win.add(core_flash);
 win.add(o_scanner);
 win.add(orangu_circle);
