@@ -1,20 +1,20 @@
-win = Titanium.UI.currentWindow
+win                  = Titanium.UI.currentWindow
 win.orientationModes = [ Titanium.UI.LANDSCAPE_LEFT ]
-win.title = win.combo
+win.title            = win.combo
 
 # driver setup
 driver_module = require('lib/driver').driver
-belt = driver_module.belt()
-driver = driver_module.driver()
-cover = driver_module.cover()
-anime = driver_module.anime()
-o_scanner = driver_module.o_scanner()
+belt          = driver_module.belt()
+driver        = driver_module.driver()
+cover         = driver_module.cover()
+anime         = driver_module.anime()
+o_scanner     = driver_module.o_scanner()
 
 # combo_sound setup
-combo_sound = require('lib/combo_sound').combo_sound
-tatoba_sound = combo_sound.tatoba_sound()
-raise_sound = combo_sound.raise_sound()
-charging_sound = combo_sound.charging_sound()
+combo_sound      = require('lib/combo_sound').combo_sound
+tatoba_sound     = combo_sound.tatoba_sound()
+raise_sound      = combo_sound.raise_sound()
+charging_sound   = combo_sound.charging_sound()
 core_slash_sound = combo_sound.core_slash_sound()
 
 tatoba_sound.file_exists_and_preload()
@@ -209,6 +209,7 @@ while i <= 2
   core_flash[i][0].sound.play()
   core_flash[i][0].sound.pause()
   i++
+
 orangu_circle = Ti.UI.createImageView(
   width: 200
   image: "../images/orangu_" + win.combo + ".png"
@@ -227,6 +228,7 @@ orangu_circle = Ti.UI.createImageView(
       zIndex: 1
       duration: 500
 )
+
 win.add belt
 win.add driver
 win.add cover

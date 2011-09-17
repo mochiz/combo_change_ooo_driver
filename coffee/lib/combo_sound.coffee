@@ -1,5 +1,4 @@
 exports.combo_sound =
-
     tatoba_sound: ->
         return  Titanium.Media.createSound(
             url: "../sounds/" + win.combo + ".mp3"
