@@ -57,6 +57,8 @@ data = [
     2: "purple"
  ]
 
+ooo = Ti.UI.currentWindow
+
 # create table view
 tableview = Titanium.UI.createTableView()
 idx = 1
@@ -85,3 +87,5 @@ tableview.addEventListener "click", (e) ->
   Titanium.UI.currentTab.open win, animated: true
 
 Titanium.UI.currentWindow.add tableview
+
+# ooo.add tableview

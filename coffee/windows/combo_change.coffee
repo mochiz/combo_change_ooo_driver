@@ -1,79 +1,32 @@
 win = Titanium.UI.currentWindow
 win.orientationModes = [ Titanium.UI.LANDSCAPE_LEFT ]
 win.title = win.combo
-belt = Titanium.UI.createImageView(
-  image: "../images/belt.png"
-  width: 480
-)
-driver = Titanium.UI.createImageView(
-  image: "../images/" + win.combo + ".png"
-  width: 480
-  changed: false
-  completed: false
-)
-cover = Ti.UI.createImageView(
-  image: "../images/cover.png"
-  width: 480
-)
-anime = Titanium.UI.createAnimation(
-  transform: Ti.UI.create2DMatrix(rotate: 28)
-  duration: 200
-)
-o_scanner = Ti.UI.createImageView(
-  top: -80
-  left: -70
-  height: 200
-  width: 200
-  image: "../images/o_scanner.png"
-  visible: false
-  vanish: ->
-    @animate Ti.UI.createAnimation(
-      top: 350
-      left: 600
-      duration: 2000
-    )
-)
-tatoba_sound = Titanium.Media.createSound(
-  url: "../sounds/" + win.combo + ".mp3"
-  preload: true
-  has_sound_file: ->
-    f = Ti.Filesystem.getFile("sounds/" + win.combo + ".mp3")
-    f.exists()
-  file_exists_and_preload: ->
-    if @has_sound_file()
-      @play()
-      @pause()
-  file_exists_and_play: ->
-    return  unless @has_sound_file()
-    @play()
-)
+
+# driver setup
+driver_module = require('lib/driver').driver
+belt = driver_module.belt()
+driver = driver_module.driver()
+cover = driver_module.cover()
+anime = driver_module.anime()
+o_scanner = driver_module.o_scanner()
+
+# combo_sound setup
+combo_sound = require('lib/combo_sound').combo_sound
+tatoba_sound = combo_sound.tatoba_sound()
+raise_sound = combo_sound.raise_sound()
+charging_sound = combo_sound.charging_sound()
+core_slash_sound = combo_sound.core_slash_sound()
+
 tatoba_sound.file_exists_and_preload()
-raise_sound = Titanium.Media.createSound(
-  url: "../sounds/driver_raise.mp3"
-  preload: true
-  preload: ->
-    @play()
-    @pause()
-)
-charging_sound = Titanium.Media.createSound(
-  url: "../sounds/charging.mp3"
-  preload: true
-  looping: true
-  preload: ->
-    @play()
-    @pause()
-)
-core_slash_sound = Titanium.Media.createSound(
-  url: "../sounds/core_slash.mp3"
-  preload: true
-  preload: ->
-    @play()
-    @pause()
-)
 raise_sound.preload()
 charging_sound.preload()
 core_slash_sound.preload()
-webview = Ti.UI.createWebView(url: "http://www.tv-asahi.co.jp/ooo/rider/" + win.combo + ".html")
+
+# webview setup
+webview = Ti.UI.createWebView(
+    url: "http://www.tv-asahi.co.jp/ooo/rider/" + win.combo + ".html"
+)
+
 scrollview = Titanium.UI.createScrollView(
   contentWidth: "auto"
   contentHeight: 1000
